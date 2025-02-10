@@ -34,6 +34,19 @@ cfonts.say('Store Inventory Tracker', {
 function start() {
     inquirer
     .prompt({
+        type: 'list',
+        name: 'action',
+        message: 'what would you like to do?',
+        choices: [
+            'Veiw all stores',
+            'View all brands',
+            'View all employees',
+            'Add a store',
+            'Add a brand',
+            'Add a employee',
+            
+
+        ]
 
     });
 }
