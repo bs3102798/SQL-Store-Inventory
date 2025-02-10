@@ -33,20 +33,39 @@ cfonts.say('Store Inventory Tracker', {
 
 function start() {
     inquirer
-    .prompt({
-        type: 'list',
-        name: 'action',
-        message: 'what would you like to do?',
-        choices: [
-            'Veiw all stores',
-            'View all brands',
-            'View all employees',
-            'Add a store',
-            'Add a brand',
-            'Add a employee',
-            
+        .prompt({
+            type: 'list',
+            name: 'action',
+            message: 'what would you like to do?',
+            choices: [
+                'View all stores',
+                'View all brands',
+                'View all employees',
+                'Add a store',
+                'Add a brand',
+                'Add a employee',
 
-        ]
 
-    });
+            ],
+
+        })
+        .then((answer) => {
+            switch (answer.action) {
+                case 'View all Stores':
+                    viewAllDepartments();
+                    break;
+                case 'View all brands':
+                    viewAllBrands();
+                    break;
+            }
+        })
+}
+
+function viewAllDepartments() {
+    const query = 'Select * From stores';
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        start();
+    })
 }
