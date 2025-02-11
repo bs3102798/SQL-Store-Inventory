@@ -60,6 +60,12 @@ function start() {
                 case 'View all Employees':
                     viewAllEmployees()
                     break;
+                case 'Add a Store':
+                    addStore()
+                    break;
+                case 'Add an employee':
+                    addEmployee()
+                    break;
             }
         })
 }
@@ -89,12 +95,47 @@ function viewAllEmployees() {
     Left Join roles r on e.role_id = r.id
     Left join departments d on r.department_id = d.id
     Left join emplyee m on e.manager_id = m.id;
-    
     `;
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
         start()
+    })
+}
 
+
+function addStore() {
+    inquirer
+    .prompt({
+        type: 'input',
+        name:'name',
+        message: 'Enter the name of the new store'
+    })
+    .then((answer) => {
+        console.log(answer.name);
+        const query = `ADD INTO Stores (store_name) Values ('${answer.name}')`;
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            console.log(`Added Store ${answer.name} to the database!`);
+            start();
+            console.log(answer.name)
+        })
+    })
+}
+
+function addEmployee() {
+    connection.query("Select id, title form roles", (error, results) => {
+        if(error) {
+            console.error(error);
+            return;
+        }
+        const roles = results.map(({id, title}) => ({
+            name: title,
+            value: id,
+        }));
+
+        connection.query(
+            ''
+        )
     })
 }
