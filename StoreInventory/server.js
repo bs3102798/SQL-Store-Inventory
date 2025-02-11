@@ -52,20 +52,49 @@ function start() {
         .then((answer) => {
             switch (answer.action) {
                 case 'View all Stores':
-                    viewAllDepartments();
+                    viewAllStores();
                     break;
                 case 'View all brands':
                     viewAllBrands();
+                    break;
+                case 'View all Employees':
+                    viewAllEmployees()
                     break;
             }
         })
 }
 
-function viewAllDepartments() {
+function viewAllStores() {
     const query = 'Select * From stores';
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
         start();
+    })
+}
+
+function viewAllBrands() {
+    const query = 'Select * from brands that are in each store';
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        start()
+    })
+}
+
+function viewAllEmployees() {
+    const query = `
+    Select e.id, e.first_name, e.last_name, r.title, d.department_name, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager_name
+    Frome employee e
+    Left Join roles r on e.role_id = r.id
+    Left join departments d on r.department_id = d.id
+    Left join emplyee m on e.manager_id = m.id;
+    
+    `;
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        start()
+
     })
 }
