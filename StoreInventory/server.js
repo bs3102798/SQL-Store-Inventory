@@ -66,6 +66,9 @@ function start() {
                 case 'Add an employee':
                     addEmployee()
                     break;
+                case 'View Emplyoees by Store':
+                    viewEmployeesByStore()
+                    break;
             }
         })
 }
