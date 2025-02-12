@@ -125,48 +125,108 @@ function viewAllEmployees() {
 
 function addStore() {
     inquirer
-    .prompt({
-        type: 'input',
-        name:'name',
-        message: 'Enter the name of the new store'
-    })
-    .then((answer) => {
-        console.log(answer.name);
-        const query = `ADD INTO Stores (store_name) Values ('${answer.name}')`;
-        connection.query(query, (err, res) => {
-            if (err) throw err;
-            console.log(`Added Store ${answer.name} to the database!`);
-            start();
-            console.log(answer.name)
+        .prompt({
+            type: 'input',
+            name: 'name',
+            message: 'Enter the name of the new store'
         })
-    })
+        .then((answer) => {
+            console.log(answer.name);
+            const query = `ADD INTO Stores (store_name) Values ('${answer.name}')`;
+            connection.query(query, (err, res) => {
+                if (err) throw err;
+                console.log(`Added Store ${answer.name} to the database!`);
+                start();
+                console.log(answer.name)
+            })
+        })
 }
 
 function addBrand() {
-    
+
 }
 
 function addEmployee() {
     connection.query("Select id, title form roles", (error, results) => {
-        if(error) {
+        if (error) {
             console.error(error);
             return;
         }
-        const roles = results.map(({id, title}) => ({
+        const roles = results.map(({ id, title }) => ({
             name: title,
             value: id,
         }));
 
         connection.query(
-            ''
+            'Select id, Concat(first_name, " " , last_name) as from employee',
+            (error, results) => {
+                if (error) {
+                    console.error(error);
+                    return
+                }
+                const managers = results.map(({ id, name }) => ({
+                    name,
+                    value: id,
+                }));
+
+                inquirer
+                    .prompt([
+                        {
+                            type: 'input',
+                            name: 'firstName',
+                            message: 'Enter first name:',
+                        },
+                        {
+                            type: 'input',
+                            name: 'lastName',
+                            message: 'Enter last name:',
+                        },
+                        {
+                            type: 'list',
+                            name: 'roleId',
+                            message: 'Select the employee role',
+                            choices: roles,
+                        },
+                        {
+                            type: 'list',
+                            name: 'managerId',
+                            message: 'Select the employee manager:',
+                            choices: [
+                                { name: 'none', value: null },
+                                ...managers,
+                            ],
+                        },
+                    ])
+                    .then((answer) => {
+                        const SQL =
+                            'Insert into employee (first_name, last_name, role_id, manager_id) Values(?,?,?,?,)';
+                        const values = [
+                            answer.firstName,
+                            answer.lastName,
+                            answer.roleId,
+                            answer.managerId,
+                        ]
+                        connection.query(SQL, values, (error) => {
+                            if (error) {
+                                console.error(error);
+                                return;
+                            }
+                            console.log("Employee added successfully");
+                            start();
+                        })
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
         )
     })
 }
 
 function viewEmployeesByStore() {
     const query = 'Slect store.store_name, employee.first_name, employee.last_name FORM employee INNER JOIN roles ON employee.role_od = roles.id INNER JOIN store ON roles.store_id = stores.id ORDER BY stores.store_name ASC'
-    connection.query(query, (err,res) => {
-        if(err) throw err;
+    connection.query(query, (err, res) => {
+        if (err) throw err;
         console.log(res);
         start()
     })
@@ -174,29 +234,29 @@ function viewEmployeesByStore() {
 
 function deletStoresBrandEmployees() {
     inquirer
-    .prompt({
-        type: 'list',
-        name: 'data',
-        message : 'what would you like to delete?',
-        choices:["employee", "Store", "Brand"],
-    })
-    .then((answer) => {
-        switch (answer.data) {
-            case "Employee":
-                deleteEmployee();
-                break;
-            case "Brand":
-                deleteBrand();
-                break;
-            case "Store":
-                deleteStore();
-                break;
-            default:
-                console.log(`Invalid data: ${answer.data}`);
-                start()
-                break;
-        }
-    })
+        .prompt({
+            type: 'list',
+            name: 'data',
+            message: 'what would you like to delete?',
+            choices: ["employee", "Store", "Brand"],
+        })
+        .then((answer) => {
+            switch (answer.data) {
+                case "Employee":
+                    deleteEmployee();
+                    break;
+                case "Brand":
+                    deleteBrand();
+                    break;
+                case "Store":
+                    deleteStore();
+                    break;
+                default:
+                    console.log(`Invalid data: ${answer.data}`);
+                    start()
+                    break;
+            }
+        })
 }
 
 
