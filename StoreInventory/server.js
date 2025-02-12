@@ -69,6 +69,10 @@ function start() {
                 case 'View Emplyoees by Store':
                     viewEmployeesByStore()
                     break;
+
+                case 'Exit':
+                    connection.end();
+                    console.log("Goodbye come again!")
             }
         })
 }
@@ -151,3 +155,12 @@ function viewEmployeesByStore() {
         start()
     })
 }
+
+
+
+
+
+
+process.on('exit', () => {
+    connection.end()
+});
