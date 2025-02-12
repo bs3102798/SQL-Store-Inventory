@@ -66,8 +66,20 @@ function start() {
                 case 'Add an employee':
                     addEmployee()
                     break;
+
+                case 'Add a brand':
+                    addBrand()
+                    break;
+                case "View the total funding of a store":
+                    ViewTotalFundingOfStore
+
+
                 case 'View Emplyoees by Store':
                     viewEmployeesByStore()
+                    break;
+
+                case 'Delete Stores | Brand | Employees':
+                    deletStoresBrandEmployees()
                     break;
 
                 case 'Exit':
@@ -130,6 +142,10 @@ function addStore() {
     })
 }
 
+function addBrand() {
+    
+}
+
 function addEmployee() {
     connection.query("Select id, title form roles", (error, results) => {
         if(error) {
@@ -153,6 +169,33 @@ function viewEmployeesByStore() {
         if(err) throw err;
         console.log(res);
         start()
+    })
+}
+
+function deletStoresBrandEmployees() {
+    inquirer
+    .prompt({
+        type: 'list',
+        name: 'data',
+        message : 'what would you like to delete?',
+        choices:["employee", "Store", "Brand"],
+    })
+    .then((answer) => {
+        switch (answer.data) {
+            case "Employee":
+                deleteEmployee();
+                break;
+            case "Brand":
+                deleteBrand();
+                break;
+            case "Store":
+                deleteStore();
+                break;
+            default:
+                console.log(`Invalid data: ${answer.data}`);
+                start()
+                break;
+        }
     })
 }
 
