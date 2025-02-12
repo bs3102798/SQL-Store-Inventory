@@ -139,3 +139,12 @@ function addEmployee() {
         )
     })
 }
+
+function viewEmployeesByStore() {
+    const query = 'Slect store.store_name, employee.first_name, employee.last_name FORM employee INNER JOIN roles ON employee.role_od = roles.id INNER JOIN store ON roles.store_id = stores.id ORDER BY stores.store_name ASC'
+    connection.query(query, (err,res) => {
+        if(err) throw err;
+        console.log(res);
+        start()
+    })
+}
