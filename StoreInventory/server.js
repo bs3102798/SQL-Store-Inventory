@@ -71,11 +71,16 @@ function start() {
                     addBrand()
                     break;
                 case "View the total funding of a store":
-                    ViewTotalFundingOfStore
+                    ViewTotalFundingOfStore();
+                    break;
 
 
                 case 'View Emplyoees by Store':
                     viewEmployeesByStore()
+                    break;
+
+                case 'delete store':
+                    deleteStore();
                     break;
 
                 case 'Delete Stores | Brand | Employees':
@@ -141,8 +146,55 @@ function addStore() {
             })
         })
 }
-
+//this is for the brands title, price, store_id
 function addBrand() {
+    const query = 'Select from stores';
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        inquirer
+            .prompt([
+                {
+                    type:'input',
+                    name: 'title',
+                    message: "Enter New title of brand",  
+                },
+                {
+                    type: 'input',
+                    name: 'price',
+                    message: "enter the price of brand",
+                },
+                {
+                    type:'list',
+                    name: 'Store',
+                    message: 'Enter the new store for brand',
+                    choices: res.map(
+                        (store) => store.store_name
+                    ),
+                },
+
+            ])
+            .then((answer) => {
+                const store = res.find(
+                    (store) => store.name === answer.store
+                );
+                const query = "Inset INTO brand set ?";
+                connection.query(
+                    query,
+                    {
+                        title: answer.title,
+                        price: answer.price,
+                        store_id: store,
+                    },
+                    (err, res) => {
+                        if (err) throw err;
+                        console.log(
+                            `Added brand ${answer.title} with price ${answer.price} to the ${answer.store} brand added in database`
+                        );
+                        start();
+                    }
+                )
+            })
+    })
 
 }
 
