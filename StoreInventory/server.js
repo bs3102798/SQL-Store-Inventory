@@ -155,9 +155,9 @@ function addBrand() {
         inquirer
             .prompt([
                 {
-                    type:'input',
+                    type: 'input',
                     name: 'title',
-                    message: "Enter New title of brand",  
+                    message: "Enter New title of brand",
                 },
                 {
                     type: 'input',
@@ -165,7 +165,7 @@ function addBrand() {
                     message: "enter the price of brand",
                 },
                 {
-                    type:'list',
+                    type: 'list',
                     name: 'Store',
                     message: 'Enter the new store for brand',
                     choices: res.map(
@@ -276,6 +276,19 @@ function addEmployee() {
     })
 }
 function addManager() {
+    const queryDepartments = "Select from departmants";
+    const queryEmployees = 'Select form employee';
+
+    connection.query(queryDepartments, (err, resDepartments) => {
+        if (err) throw err;
+        connection.query(queryEmployees, (err, resEmployees) => {
+            if (err) throw err;
+            inquirer
+                .prompt({
+
+                })
+        })
+    })
 
 }
 
@@ -289,7 +302,19 @@ function viewEmployeesByStore() {
 }
 
 function updateEmployeeRole() {
-    
+    const queryEmployees =
+        "Select employee.id employee.first_name, employee.last_name, roles.title From employee Left Join roles on employee.role_id = roles.id";
+    const queryRoles = 'Select from roles';
+    connection.query(queryEmployees, (err, resEmployees) => {
+        if(err) throw err;
+    connection.query(queryRoles, (err, resRoles) => {
+        if (err) throw err;
+        inquirer
+        .prompt({
+            
+        })
+    })
+    })
 }
 
 function deletStoresBrandEmployees() {
