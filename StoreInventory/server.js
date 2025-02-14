@@ -66,23 +66,24 @@ function start() {
                 case 'Add an employee':
                     addEmployee()
                     break;
-
+                case 'Add a Manager':
+                    addManager();
+                    break
                 case 'Add a brand':
                     addBrand()
+                    break;
+                case 'Update an employee role':
+                    updateEmployeeRole();
                     break;
                 case "View the total funding of a store":
                     ViewTotalFundingOfStore();
                     break;
-
-
-                case 'View Emplyoees by Store':
+                case 'View Employees by Store':
                     viewEmployeesByStore()
                     break;
-
                 case 'delete store':
                     deleteStore();
                     break;
-
                 case 'Delete Stores | Brand | Employees':
                     deletStoresBrandEmployees()
                     break;
@@ -274,6 +275,9 @@ function addEmployee() {
         )
     })
 }
+function addManager() {
+
+}
 
 function viewEmployeesByStore() {
     const query = 'Slect store.store_name, employee.first_name, employee.last_name FORM employee INNER JOIN roles ON employee.role_od = roles.id INNER JOIN store ON roles.store_id = stores.id ORDER BY stores.store_name ASC'
@@ -282,6 +286,10 @@ function viewEmployeesByStore() {
         console.log(res);
         start()
     })
+}
+
+function updateEmployeeRole() {
+    
 }
 
 function deletStoresBrandEmployees() {
