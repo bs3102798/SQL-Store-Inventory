@@ -284,11 +284,39 @@ function addManager() {
         connection.query(queryEmployees, (err, resEmployees) => {
             if (err) throw err;
             inquirer
-                .prompt({
+                .prompt([
+                    {
+                        type: 'list',
+                        name: 'department',
+                        message: 'Select the department:',
+                        choices: resDepartments.map(
+                            (department) => department.department_name
+                        ),
 
-                })
-        })
+                    },
+                    {
+                        type: 'list',
+                        name: 'employee',
+                        message: 'Select the employee to add to manager to:',
+                        choices: resEmployees.map(
+                            (employee) =>
+                                `${employee.first_name} ${employee.last_name}`
+                        ),
+                    },
+                    {
+                        type: 'list',
+                        name: 'manager',
+                        message: 'Select employee manager:',
+                        choices: resEmployees.map(
+                            (employee) =>
+                                `${employee.first_name} ${employee.last_name}`
+                        ),
+                    },
+
+                ])
+                .then
     })
+})
 
 }
 
@@ -306,14 +334,29 @@ function updateEmployeeRole() {
         "Select employee.id employee.first_name, employee.last_name, roles.title From employee Left Join roles on employee.role_id = roles.id";
     const queryRoles = 'Select from roles';
     connection.query(queryEmployees, (err, resEmployees) => {
-        if(err) throw err;
-    connection.query(queryRoles, (err, resRoles) => {
         if (err) throw err;
-        inquirer
-        .prompt({
-            
+        connection.query(queryRoles, (err, resRoles) => {
+            if (err) throw err;
+            inquirer
+                .prompt([
+                    {
+                        type:'list',
+                        name: 'employee',
+                        message: 'Select eh employee to update:',
+                        choices: resEmployees.map(
+                            (employee) => 
+                                `${employee.first_name} ${employee.last_name}`
+                        ),
+                    },
+                    {
+                        type:'list',
+                        name: 'role',
+                        message: 'Select the new role:',
+                        choices: resRoles.map((role) => role.title),
+                    }
+                ])
+                .then
         })
-    })
     })
 }
 
