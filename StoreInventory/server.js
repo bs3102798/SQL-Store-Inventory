@@ -314,7 +314,9 @@ function addManager() {
                     },
 
                 ])
-                .then
+                .then((answer) => {
+                    const department = resDepartments.find()
+                })
     })
 })
 
@@ -355,7 +357,9 @@ function updateEmployeeRole() {
                         choices: resRoles.map((role) => role.title),
                     }
                 ])
-                .then
+                .then((answer) => {
+                    const employee = resEmployees.find()
+                })
         })
     })
 }
