@@ -315,7 +315,33 @@ function addManager() {
 
                 ])
                 .then((answer) => {
-                    const department = resDepartments.find()
+                    const department = resDepartments.find(
+                        (department) =>
+                            department.department_name === answer.department
+                    );
+                    const employee = resEmployees.find(
+                        (employee) => 
+                            `${employee.first_name} ${employee.last_name}` === 
+                        answer.employee
+                    );
+                    const manager = resEmployees.find(
+                        (employee) =>
+                            `${employee.first_name} ${employee.last_name}` === 
+                        answer.manager    
+                    );
+                    const query = 
+                    'Update employee set manager_id = ? Where id = ? AND role_id In (Select id From roles Where department_id = ?'
+                    connection.query(
+                        query,
+                        [manager.id, employee.id, department.id],
+                        (err,res) => {
+                            if (err) throw err;
+                            console.log(
+                                `Added manager ${manager.first_name} ${manager.last_name} to employee ${employee.first_name} ${employee.last_name} in department ${department.department_name}`
+                            );
+                            start();
+                        }
+                    )
                 })
     })
 })
