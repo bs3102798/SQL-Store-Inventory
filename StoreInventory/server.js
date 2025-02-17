@@ -384,7 +384,26 @@ function updateEmployeeRole() {
                     }
                 ])
                 .then((answer) => {
-                    const employee = resEmployees.find()
+                    const employee = resEmployees.find(
+                        (employee) => `${employee.first_name} ${employee.last_name}` === 
+                        answer.employee
+                    );
+                    const role = resRoles.find(
+                        (role) => role.tile === answer.role
+                    );
+                    const query = 
+                    'update employee Set role_id = ? WHere id = ?';
+                    connection.query(
+                        query, 
+                        [role.id, employee.id],
+                        (err, res) => {
+                            if (err) throw err;
+                            console.log(
+                                `Updated ${employee.first_name} ${employee.last_name}'s role to ${role.tile} in the database!`
+                            )
+                            start();
+                        }
+                    )
                 })
         })
     })
