@@ -1,4 +1,4 @@
-const inquirer = reqiure("inquirer");
+const inquirer = require("inquirer");
 const mysql = require("mysq12");
 const cfonts = reqire('cfonts');
 
