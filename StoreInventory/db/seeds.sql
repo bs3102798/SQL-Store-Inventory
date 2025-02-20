@@ -12,51 +12,51 @@ INSERT INTO stores(store_name) VALUES
 
 INSERT INTO products(title, price, store_id) VALUES
 ('FreshBite Apples', 4.99 ,1),
-('UltraClean Laundry Pods',12.99, 2),
-('GlowMax LED Bulbs',9.99 ,3),
+('UltraClean Laundry Pods',12.99, 1),
+('GlowMax LED Bulbs',9.99 ,1),
 
-('CozyNest Blanket',24.99 ,4),
-('SnapFit Blender',39.99,5),
-('SwiftStirde Sneakers', 49.99,6),
+('CozyNest Blanket',24.99 ,2),
+('SnapFit Blender',39.99,2),
+('SwiftStirde Sneakers', 49.99,2),
 
-('TechNova Smartwatch',59.99 ,7),
-('EternaCharge Power Bank', 29.99, 8),
-('Brew Coffee Maker', 79.99, 9),
+('TechNova Smartwatch',59.99 ,3),
+('EternaCharge Power Bank', 29.99, 3),
+('Brew Coffee Maker', 79.99, 3),
 
-('SoundSphere Earbuds', 99.99, 10),
-('HyperView 4k Monitor',249.99, 11),
-('GameRush Controller',59.99, 12),
+('SoundSphere Earbuds', 99.99, 4),
+('HyperView 4k Monitor',249.99, 4),
+('GameRush Controller',59.99, 4),
 
-('MegaBites Trail Mix',14.99, 13),
-('PureFlow Water Filter',49.99, 14),
-('PlushRest Mattress',399.99, 15),
+('MegaBites Trail Mix',14.99, 5),
+('PureFlow Water Filter',49.99, 5),
+('PlushRest Mattress',399.99, 5),
 
-('VisionAir Pro',1299.99, 16),
-('SonicPod Mini',99.99, 17),
-('AirTouch Stylus',129.99, 18),
+('VisionAir Pro',1299.99, 6),
+('SonicPod Mini',99.99, 6),
+('AirTouch Stylus',129.99, 6),
 
-('PowerThrive Drill',89.99, 19),
-('GreenGlow LED Strip',29.99, 20),
-('FortiLock Padlock',19.99, 21),
+('PowerThrive Drill',89.99, 7),
+('GreenGlow LED Strip',29.99, 7),
+('FortiLock Padlock',19.99, 7),
 
-('AeroDash Running Shoes',129.99, 22),
-('FlexEdge Training Shorts',39.99, 23),
-('EnduraFit Yofa Mat',49.99, 24),
+('AeroDash Running Shoes',129.99, 8),
+('FlexEdge Training Shorts',39.99, 8),
+('EnduraFit Yofa Mat',49.99, 8),
 
-('LumiDesk Workstation',199.99, 25),
-('ComfiNest Pillow', 24.99, 26),
-('StackEase Shelving',89.99, 27),
+('LumiDesk Workstation',199.99, 9),
+('ComfiNest Pillow', 24.99, 9),
+('StackEase Shelving',89.99, 9),
 
-('GlowMist Setting Spray',19.99, 28),
-('VelvetKiss Lipstick', 24.99, 29),
-('LUshLocks Hair Serum',34.99, 30);
-
-
+('GlowMist Setting Spray',19.99, 10),
+('VelvetKiss Lipstick', 24.99, 10),
+('LUshLocks Hair Serum',34.99, 10);
 
 
 
 
-INSERT INTO employess(first_name, last_name, role_id, manager_id)
+
+
+INSERT INTO employees(first_name, last_name, role_id, manager_id)
 VALUES
 ('tom', 'brady', 1, 1),
 ('michael', 'jordan', 2, 2),
