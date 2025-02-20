@@ -1,5 +1,4 @@
-INSERT INTO stores(store_name)
-VALUES
+INSERT INTO stores(store_name) VALUES
 ('Walmart'),
 ('Target'),
 ('Amazon'),
@@ -9,10 +8,9 @@ VALUES
 ('Home Depot'),
 ('Nike'),
 ('IKEA'),
-('Sams Club'),
+('Sams Club');
 
-INSERT INTO products(title, price, store_id)
-VALUES
+INSERT INTO products(title, price, store_id) VALUES
 ('FreshBite Apples', 4.99 ,1),
 ('UltraClean Laundry Pods',12.99, 2),
 ('GlowMax LED Bulbs',9.99 ,3),
@@ -51,7 +49,7 @@ VALUES
 
 ('GlowMist Setting Spray',19.99, 28),
 ('VelvetKiss Lipstick', 24.99, 29),
-('LUshLocks Hair Serum',34.99, 30),
+('LUshLocks Hair Serum',34.99, 30);
 
 
 
@@ -60,13 +58,13 @@ VALUES
 
 INSERT INTO employess(first_name, last_name, role_id, manager_id)
 VALUES
-('tom', 'brady', 1, 1,)
-('michael', 'jordan', 2, 2,)
-('serena', 'williams', 3, 3,)
-('lebron', 'james', 4, 4,)
-('tiger', 'woods', 5, 5,)
-('elon', 'musk', 6, 6,)
-('bill', 'gates', 7, 7,)
-('jeff', 'bezos', 8, 8,)
-('steve', 'jobs', 9, 9,)
-('mark', 'zuckerberg', 10, 10,)
+('tom', 'brady', 1, 1),
+('michael', 'jordan', 2, 2),
+('serena', 'williams', 3, 3),
+('lebron', 'james', 4, 4),
+('tiger', 'woods', 5, 5),
+('elon', 'musk', 6, 6),
+('bill', 'gates', 7, 7),
+('jeff', 'bezos', 8, 8),
+('steve', 'jobs', 9, 9),
+('mark', 'zuckerberg', 10, 10);
