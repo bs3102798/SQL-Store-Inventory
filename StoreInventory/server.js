@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
-const mysql = require("mysq12");
-const cfonts = reqire('cfonts');
+const mysql = require("mysql2");
+const cfonts = require('cfonts');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -45,7 +45,6 @@ function start() {
                 'Add a brand',
                 'Add a employee',
 
-
             ],
 
         })
@@ -87,7 +86,6 @@ function start() {
                 case 'Delete Stores | Brand | Employees':
                     deletStoresBrandEmployees()
                     break;
-
                 case 'Exit':
                     connection.end();
                     console.log("Goodbye come again!")
