@@ -137,7 +137,7 @@ function addStore() {
         })
         .then((answer) => {
             console.log(answer.name);
-            const query = `ADD INTO Stores (store_name) Values ('${answer.name}')`;
+            const query = `INSERT INTO Stores (store_name) Values ('${answer.name}')`;
             connection.query(query, (err, res) => {
                 if (err) throw err;
                 console.log(`Added Store ${answer.name} to the database!`);
@@ -148,7 +148,7 @@ function addStore() {
 }
 //this is for the brands title, price, store_id
 function addBrand() {
-    const query = 'Select from stores';
+    const query = '';
     connection.query(query, (err, res) => {
         if (err) throw err;
         inquirer
