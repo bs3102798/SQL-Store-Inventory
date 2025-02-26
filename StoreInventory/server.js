@@ -38,10 +38,10 @@ function start() {
             name: 'action',
             message: 'what would you like to do?',
             choices: [
-                'View all stores',
+                'View all Stores',
                 'View all brands',
-                'View all employees',
-                'Add a store',
+                'View all Employees',
+                'Add a Store',
                 'Add a brand',
                 'Add a employee',
 
@@ -94,7 +94,7 @@ function start() {
 }
 
 function viewAllStores() {
-    const query = 'Select * From stores';
+    const query = "Select * FROM stores";
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
@@ -103,7 +103,7 @@ function viewAllStores() {
 }
 
 function viewAllBrands() {
-    const query = 'Select * from brands that are in each store';
+    const query = 'Select * FROM products';
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
@@ -112,13 +112,14 @@ function viewAllBrands() {
 }
 
 function viewAllEmployees() {
-    const query = `
-    Select e.id, e.first_name, e.last_name, r.title, d.department_name, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager_name
-    Frome employee e
-    Left Join roles r on e.role_id = r.id
-    Left join departments d on r.department_id = d.id
-    Left join emplyee m on e.manager_id = m.id;
-    `;
+    const query = 'Select * FROM employees';
+    // `
+    // Select e.id, e.first_name, e.last_name, r.title, d.department_name, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager_name
+    // Frome employee e
+    // Left Join roles r on e.role_id = r.id
+    // Left join departments d on r.department_id = d.id
+    // Left join emplyee m on e.manager_id = m.id;
+    // `
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);

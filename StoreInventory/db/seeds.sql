@@ -10,6 +10,7 @@ INSERT INTO stores(store_name) VALUES
 ('IKEA'),
 ('Sams Club');
 
+
 INSERT INTO products(title, price, store_id) VALUES
 ('FreshBite Apples', 4.99 ,1),
 ('UltraClean Laundry Pods',12.99, 1),
