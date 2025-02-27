@@ -44,6 +44,7 @@ function start() {
                 'Add a Store',
                 'Add a brand',
                 'Add a employee',
+                'Exit',
 
             ],
 
