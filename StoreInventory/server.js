@@ -148,7 +148,7 @@ function addStore() {
 }
 //this is for the brands title, price, store_id
 function addBrand() {
-    const query = '';
+    const query = 'SELECT * FROM stores';
     connection.query(query, (err, res) => {
         if (err) throw err;
         inquirer
@@ -165,25 +165,24 @@ function addBrand() {
                 },
                 {
                     type: 'list',
-                    name: 'Store',
+                    name: 'store',
                     message: 'Enter the new store for brand',
-                    choices: res.map(
-                        (store) => store.store_name
-                    ),
+                    choices: res.map((store) => store.store_name ),
                 },
 
             ])
             .then((answer) => {
                 const store = res.find(
-                    (store) => store.name === answer.store
+                    (s) => s.store.name === answer.store
                 );
-                const query = "Inset INTO brand set ?";
+               
+                const query = "INSERT INTO products set ?";
                 connection.query(
                     query,
                     {
                         title: answer.title,
                         price: answer.price,
-                        store_id: store,
+                        store_id: store.id,
                     },
                     (err, res) => {
                         if (err) throw err;
