@@ -174,8 +174,9 @@ function addBrand() {
             ])
             .then((answer) => {
                 const store = res.find(
-                    (s) => s.store.name === answer.store
+                    (s) => s.store_name === answer.store
                 );
+               
                
                 const query = "INSERT INTO products set ?";
                 connection.query(
