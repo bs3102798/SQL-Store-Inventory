@@ -200,7 +200,7 @@ function addBrand() {
 }
 
 function addEmployee() {
-    connection.query("Select id, title form roles", (error, results) => {
+    connection.query("SELECT id, title FROM employees", (error, results) => {
         if (error) {
             console.error(error);
             return;
