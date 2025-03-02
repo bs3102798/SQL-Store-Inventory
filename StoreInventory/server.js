@@ -44,6 +44,9 @@ function start() {
                 'Add a Store',
                 'Add a brand',
                 'Add a employee',
+                'View the total funding of a store',
+                'Delete Stores | Brand | Employees',
+
                 'Exit',
 
             ],
@@ -418,12 +421,12 @@ function deletStoresBrandEmployees() {
             choices: ["employee", "Store", "Brand"],
         })
         .then((answer) => {
-            switch (answer.data) {
+            switch (answer.dat) {
                 case "Employee":
                     deleteEmployee();
                     break;
                 case "Brand":
-                    deleteBrand();
+                    deleteBra();
                     break;
                 case "Store":
                     deleteStore();
