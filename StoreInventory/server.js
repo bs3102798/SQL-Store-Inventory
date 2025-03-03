@@ -421,12 +421,12 @@ function deletStoresBrandEmployees() {
             choices: ["employee", "Store", "Brand"],
         })
         .then((answer) => {
-            switch (answer.dat) {
+            switch (answer.data) {
                 case "Employee":
                     deleteEmployee();
                     break;
                 case "Brand":
-                    deleteBra();
+                    deleteBrand();
                     break;
                 case "Store":
                     deleteStore();
@@ -437,6 +437,21 @@ function deletStoresBrandEmployees() {
                     break;
             }
         })
+}
+
+function deleteEmployee() {
+    'her for delete'
+
+}
+
+function deleteBrand() {
+    'her for delete'
+
+}
+
+function deleteStore() {
+    'her for delete'
+
 }
 
 
