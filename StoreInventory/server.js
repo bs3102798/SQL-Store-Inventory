@@ -75,17 +75,11 @@ function start() {
                 case 'Add a brand':
                     addBrand()
                     break;
-                case 'Update an employee role':
-                    updateEmployeeRole();
-                    break;
                 case "View the total funding of a store":
                     ViewTotalFundingOfStore();
                     break;
                 case 'View Employees by Store':
                     viewEmployeesByStore()
-                    break;
-                case 'delete store':
-                    deleteStore();
                     break;
                 case 'Delete Stores | Brand | Employees':
                     deletStoresBrandEmployees()
@@ -117,13 +111,6 @@ function viewAllBrands() {
 
 function viewAllEmployees() {
     const query = 'Select * FROM employees';
-    // `
-    // Select e.id, e.first_name, e.last_name, r.title, d.department_name, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager_name
-    // Frome employee e
-    // Left Join roles r on e.role_id = r.id
-    // Left join departments d on r.department_id = d.id
-    // Left join emplyee m on e.manager_id = m.id;
-    // `
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
@@ -150,7 +137,7 @@ function addStore() {
             })
         })
 }
-//this is for the brands title, price, store_id
+
 function addBrand() {
     const query = 'SELECT * FROM stores';
     connection.query(query, (err, res) => {
