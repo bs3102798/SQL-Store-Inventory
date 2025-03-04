@@ -427,17 +427,25 @@ function deletStoresBrandEmployees() {
 }
 
 function deleteEmployee() {
-    'her for delete'
+    const query = "SELECT * FROM employee";
+    connection.query(query, (err, res) =>{
+        if(err) throw err;
+    })
+    
 
 }
 
 function deleteBrand() {
-    'her for delete'
+    
 
 }
 
 function deleteStore() {
-    'her for delete'
+    
+
+}
+
+function ViewTotalFundingOfStore() {
 
 }
 

@@ -30,3 +30,4 @@ CREATE TABLE employees(
     manager_id INT NULL
 
 );
+-- create anual profits and losses for stores
