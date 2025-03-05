@@ -430,6 +430,14 @@ function deleteEmployee() {
     const query = "SELECT * FROM employee";
     connection.query(query, (err, res) =>{
         if(err) throw err;
+        const employeeList = res.map((employee) => ({
+            name: `${employee.first_name} ${employee.last_name}`,
+            value: employee.id
+        }))
+        employeeList.push({name: 'Go back', value: 'back'});
+        inquirer.prompt({
+            
+        })
     })
     
 
