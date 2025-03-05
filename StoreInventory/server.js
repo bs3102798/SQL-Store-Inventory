@@ -436,7 +436,7 @@ function deleteEmployee() {
         }))
         employeeList.push({name: 'Go back', value: 'back'});
         inquirer.prompt({
-            
+
         })
     })
     
@@ -444,6 +444,18 @@ function deleteEmployee() {
 }
 
 function deleteBrand() {
+    const query = 'SELECT * FROM roles';
+    connection.query(query, (err, res) => {
+        if(err) throw err;
+        const choice = res.map((brand) =({
+            name: `${brand.title} (${band.id}) - ${brand.price}`,
+            value: brand.id,
+        }))
+        choice.push({ name: 'Go Back', value: null });
+        inquirer.prompt({
+            
+        })
+    })
     
 
 }
