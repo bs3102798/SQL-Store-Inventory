@@ -453,7 +453,7 @@ function deleteBrand() {
         }))
         choice.push({ name: 'Go Back', value: null });
         inquirer.prompt({
-            
+
         })
     })
     
@@ -461,6 +461,7 @@ function deleteBrand() {
 }
 
 function deleteStore() {
+    const query = "SELECT * FROM departments";
     
 
 }
