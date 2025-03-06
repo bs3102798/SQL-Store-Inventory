@@ -447,7 +447,7 @@ function deleteBrand() {
     const query = 'SELECT * FROM roles';
     connection.query(query, (err, res) => {
         if(err) throw err;
-        const brandChoices = res.map((brand) =({
+        const choices = res.map((brand) =({
             name: `${brand.title} (${band.id}) - ${brand.price}`,
             value: brand.id,
         }))
@@ -456,10 +456,8 @@ function deleteBrand() {
             type: 'list',
             name: 'brandId',
             messsage: 'which brand would you like to delete?',
-            choice: [
-                ...brandChoices,
-                {mame: 'Go Back', value: "back"},
-            ],
+            choice: 
+                choices,
 
         })
         .then((answer) => {
@@ -471,7 +469,10 @@ function deleteBrand() {
 }
 
 function deleteStore() {
-    const query = "SELECT * FROM departments";
+    const query = "SELECT * FROM stores";
+    connection.query(query, (err, res) => {
+        if(err) throw err;
+    })
     
     
 
