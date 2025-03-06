@@ -461,6 +461,10 @@ function deleteBrand() {
 
         })
         .then((answer) => {
+            if (answer.brandId === null) {
+                deletStoresBrandEmployees()
+                return
+            }
 
         })
     })
