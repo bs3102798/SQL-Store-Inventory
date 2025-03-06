@@ -447,12 +447,22 @@ function deleteBrand() {
     const query = 'SELECT * FROM roles';
     connection.query(query, (err, res) => {
         if(err) throw err;
-        const choice = res.map((brand) =({
+        const brandChoices = res.map((brand) =({
             name: `${brand.title} (${band.id}) - ${brand.price}`,
             value: brand.id,
         }))
         choice.push({ name: 'Go Back', value: null });
         inquirer.prompt({
+            type: 'list',
+            name: 'brandId',
+            messsage: 'which brand would you like to delete?',
+            choice: [
+                ...brandChoices,
+                {mame: 'Go Back', value: "back"},
+            ],
+
+        })
+        .then((answer) => {
 
         })
     })
@@ -462,6 +472,7 @@ function deleteBrand() {
 
 function deleteStore() {
     const query = "SELECT * FROM departments";
+    
     
 
 }
