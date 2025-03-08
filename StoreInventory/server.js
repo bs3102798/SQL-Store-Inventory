@@ -475,7 +475,7 @@ function deleteBrand() {
 function deleteStore() {
     const query = "SELECT * FROM stores";
     connection.query(query, (err, res) => {
-        if(err) throw err;
+        
     })
     
     
