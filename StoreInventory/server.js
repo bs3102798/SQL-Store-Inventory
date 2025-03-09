@@ -158,7 +158,7 @@ function addBrand() {
                     type: 'list',
                     name: 'store',
                     message: 'Enter the new store for brand',
-                    choices: res.map((store) => store.store_name ),
+                    choices: res.map((store) => store.store_name),
                 },
 
             ])
@@ -166,8 +166,8 @@ function addBrand() {
                 const store = res.find(
                     (s) => s.store_name === answer.store
                 );
-               
-               
+
+
                 const query = "INSERT INTO products set ?";
                 connection.query(
                     query,
@@ -310,21 +310,21 @@ function addManager() {
                             department.department_name === answer.department
                     );
                     const employee = resEmployees.find(
-                        (employee) => 
-                            `${employee.first_name} ${employee.last_name}` === 
-                        answer.employee
+                        (employee) =>
+                            `${employee.first_name} ${employee.last_name}` ===
+                            answer.employee
                     );
                     const manager = resEmployees.find(
                         (employee) =>
-                            `${employee.first_name} ${employee.last_name}` === 
-                        answer.manager    
+                            `${employee.first_name} ${employee.last_name}` ===
+                            answer.manager
                     );
-                    const query = 
-                    'Update employee set manager_id = ? Where id = ? AND role_id In (Select id From roles Where department_id = ?'
+                    const query =
+                        'Update employee set manager_id = ? Where id = ? AND role_id In (Select id From roles Where department_id = ?'
                     connection.query(
                         query,
                         [manager.id, employee.id, department.id],
-                        (err,res) => {
+                        (err, res) => {
                             if (err) throw err;
                             console.log(
                                 `Added manager ${manager.first_name} ${manager.last_name} to employee ${employee.first_name} ${employee.last_name} in department ${department.department_name}`
@@ -333,8 +333,8 @@ function addManager() {
                         }
                     )
                 })
+        })
     })
-})
 
 }
 
@@ -358,16 +358,16 @@ function updateEmployeeRole() {
             inquirer
                 .prompt([
                     {
-                        type:'list',
+                        type: 'list',
                         name: 'employee',
                         message: 'Select eh employee to update:',
                         choices: resEmployees.map(
-                            (employee) => 
+                            (employee) =>
                                 `${employee.first_name} ${employee.last_name}`
                         ),
                     },
                     {
-                        type:'list',
+                        type: 'list',
                         name: 'role',
                         message: 'Select the new role:',
                         choices: resRoles.map((role) => role.title),
@@ -375,16 +375,16 @@ function updateEmployeeRole() {
                 ])
                 .then((answer) => {
                     const employee = resEmployees.find(
-                        (employee) => `${employee.first_name} ${employee.last_name}` === 
-                        answer.employee
+                        (employee) => `${employee.first_name} ${employee.last_name}` ===
+                            answer.employee
                     );
                     const role = resRoles.find(
                         (role) => role.tile === answer.role
                     );
-                    const query = 
-                    'update employee Set role_id = ? WHere id = ?';
+                    const query =
+                        'update employee Set role_id = ? WHere id = ?';
                     connection.query(
-                        query, 
+                        query,
                         [role.id, employee.id],
                         (err, res) => {
                             if (err) throw err;
@@ -428,26 +428,26 @@ function deletStoresBrandEmployees() {
 
 function deleteEmployee() {
     const query = "SELECT * FROM employee";
-    connection.query(query, (err, res) =>{
-        if(err) throw err;
+    connection.query(query, (err, res) => {
+        if (err) throw err;
         const employeeList = res.map((employee) => ({
             name: `${employee.first_name} ${employee.last_name}`,
             value: employee.id
         }))
-        employeeList.push({name: 'Go back', value: 'back'});
+        employeeList.push({ name: 'Go back', value: 'back' });
         inquirer.prompt({
 
         })
     })
-    
+
 
 }
 
 function deleteBrand() {
     const query = 'SELECT * FROM roles';
     connection.query(query, (err, res) => {
-        if(err) throw err;
-        const choices = res.map((brand) =({
+        if (err) throw err;
+        const choices = res.map((brand) = ({
             name: `${brand.title} (${band.id}) - ${brand.price}`,
             value: brand.id,
         }))
@@ -456,27 +456,27 @@ function deleteBrand() {
             type: 'list',
             name: 'brandId',
             messsage: 'which brand would you like to delete?',
-            choice: 
+            choice:
                 choices,
 
         })
-        .then((answer) => {
-            if (answer.brandId === 'back') {
-                deletStoresBrandEmployees()
-                return
-            }
-            const query = 'DELETE FROM employee WHERE is = ?';
-            connection.query(query, [answer.id], (err, res)=> {
-                if (err) throw err;
-                console.log(
-                    `Delete employee with ID ${answer.id} from the database!`
-                );
-                start()
-            });
+            .then((answer) => {
+                if (answer.brandId === 'back') {
+                    deletStoresBrandEmployees()
+                    return
+                }
+                const query = 'DELETE FROM employee WHERE is = ?';
+                connection.query(query, [answer.id], (err, res) => {
+                    if (err) throw err;
+                    console.log(
+                        `Delete employee with ID ${answer.id} from the database!`
+                    );
+                    start()
+                });
 
-        });
+            });
     });
-    
+
 
 }
 
@@ -484,10 +484,19 @@ function deleteStore() {
     const query = "SELECT * FROM stores";
     connection.query(query, (err, res) => {
         if (err) throw err;
-        
+        const storeChoices = res.map((store) => ({
+            name: store.store_name,
+            value: store.id,
+        }));
+        inquirer
+            .prompt({
+
+            })
+
+
     })
-    
-    
+
+
 
 }
 
