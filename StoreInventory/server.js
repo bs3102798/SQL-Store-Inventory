@@ -490,8 +490,15 @@ function deleteStore() {
         }));
         inquirer
             .prompt({
-
+                type: 'list',
+                name: 'storeId',
+                message: 'Which store would you like to delete?',
+                choices: [
+                    ...storeChoices, 
+                    {name: 'Go back', value: "back"}
+                ]
             })
+            .then((answer) => {})
 
 
     })
