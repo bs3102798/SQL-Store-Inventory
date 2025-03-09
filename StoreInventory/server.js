@@ -461,13 +461,21 @@ function deleteBrand() {
 
         })
         .then((answer) => {
-            if (answer.brandId === null) {
+            if (answer.brandId === 'back') {
                 deletStoresBrandEmployees()
                 return
             }
+            const query = 'DELETE FROM employee WHERE is = ?';
+            connection.query(query, [answer.id], (err, res)=> {
+                if (err) throw err;
+                console.log(
+                    `Delete employee with ID ${answer.id} from the database!`
+                );
+                start()
+            });
 
-        })
-    })
+        });
+    });
     
 
 }
