@@ -435,8 +435,19 @@ function deleteEmployee() {
             value: employee.id
         }))
         employeeList.push({ name: 'Go back', value: 'back' });
-        inquirer.prompt({
-
+        inquirer
+            .prompt({
+                type: 'list',
+                name: 'id',
+                message: "select the employee you want to delete:",
+                choices: employeeList,
+        })
+        .then((answer) => {
+            if (answer.id === "back") {
+                deletStoresBrandEmployees();
+                return;
+            }
+            const query = "DELETE FROM employee WHERE id = ?";
         })
     })
 
