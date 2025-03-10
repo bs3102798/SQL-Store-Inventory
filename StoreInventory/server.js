@@ -498,7 +498,24 @@ function deleteStore() {
                     {name: 'Go back', value: "back"}
                 ]
             })
-            .then((answer) => {})
+            .then((answer) => {
+                if(answer.storeId === 'back') {
+                    deletStoresBrandEmployees();
+                } else {
+                    const query = "DELETE FROM store WHERE id = ?";
+                    connection.query(
+                        query, 
+                        [answer.storeId],
+                        (err, res) => {
+                            if (err) throw err;
+                            console.log(
+                                `Deleted store with ID ${answer.storeId} for the database!`
+                            );
+                            start()
+                        }
+                    )
+                }
+            })
 
 
     })
