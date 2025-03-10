@@ -448,6 +448,13 @@ function deleteEmployee() {
                 return;
             }
             const query = "DELETE FROM employee WHERE id = ?";
+            connection.query(query, [answer.id], (err, res) => {
+                if (err) throw err;
+                console.log(
+                    `DeleteE employee with ID ${answer.id} form the database!`
+                )
+                start()
+            })
         })
     })
 
