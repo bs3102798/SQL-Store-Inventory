@@ -190,7 +190,7 @@ function addBrand() {
 }
 
 function addEmployee() {
-    connection.query("SELECT id, title FROM employees", (error, results) => {
+    connection.query("SELECT id, title FROM roles", (error, results) => {
         if (error) {
             console.error(error);
             return;
@@ -199,9 +199,10 @@ function addEmployee() {
             name: title,
             value: id,
         }));
+        console.log("Roles loaded:", roles);
 
         connection.query(
-            'Select id, Concat(first_name, " " , last_name) as from employee',
+            'SELECT id, CONCAT(first_name, " " , last_name) AS name FROM employees',
             (error, results) => {
                 if (error) {
                     console.error(error);
@@ -211,6 +212,7 @@ function addEmployee() {
                     name,
                     value: id,
                 }));
+                console.log("Managers loaded:", managers);
 
                 inquirer
                     .prompt([
@@ -242,12 +244,12 @@ function addEmployee() {
                     ])
                     .then((answer) => {
                         const SQL =
-                            'Insert into employee (first_name, last_name, role_id, manager_id) Values(?,?,?,?,)';
+                            'INSERT INTO employees (first_name, last_name, role_id, manager_id) Values(?,?,?,?)';
                         const values = [
                             answer.firstName,
                             answer.lastName,
                             answer.roleId,
-                            answer.managerId,
+                            answer.managerId || null,
                         ]
                         connection.query(SQL, values, (error) => {
                             if (error) {
@@ -529,7 +531,7 @@ function deleteStore() {
                             console.log(
                                 `Deleted store with ID ${answer.storeId} for the database!`
                             );
-                            start()1
+                            start()
                         }
                     )
                 }

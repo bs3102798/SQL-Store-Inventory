@@ -22,12 +22,22 @@ REFERENCES stores(id) ON DELETE SET NULL
 
 );
 
+CREATE TABLE roles (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    salary DECIMAL(10,2),
+    department_id INT,
+    FOREIGN KEY (department_id)
+    REFERENCES departments(id) ON DELETE SET NULL
+);
+
 CREATE TABLE employees(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT,
-    manager_id INT NULL
+    manager_id INT NULL,
+    FOREIGN KEY (role_id) REFERENCES roles(id)
 
 );
 -- create anual profits and losses for stores
