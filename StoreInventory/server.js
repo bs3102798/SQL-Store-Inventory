@@ -529,7 +529,7 @@ function deleteStore() {
                             console.log(
                                 `Deleted store with ID ${answer.storeId} for the database!`
                             );
-                            start()
+                            start()1
                         }
                     )
                 }
