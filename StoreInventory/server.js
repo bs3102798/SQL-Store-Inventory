@@ -468,10 +468,10 @@ function deleteBrand() {
     connection.query(query, (err, res) => {
         if (err) throw err;
         const choices = res.map((brand) = ({
-            name: `${brand.title} (${band.id}) - ${brand.price}`,
+            name: `${brand.title} (${brand.id}) - ${brand.price}`,
             value: brand.id,
         }))
-        choice.push({ name: 'Go Back', value: null });
+        choices.push({ name: 'Go Back', value: null });
         inquirer.prompt({
             type: 'list',
             name: 'brandId',
@@ -504,9 +504,9 @@ function deleteStore() {
     const query = "SELECT * FROM stores";
     connection.query(query, (err, res) => {
         if (err) throw err;
-        const storeChoices = res.map((store) => ({
-            name: store.store_name,
-            value: store.id,
+        const storeChoices = res.map((stores) => ({
+            name: stores.store_name,
+            value: stores.id,
         }));
         inquirer
             .prompt({
@@ -522,7 +522,7 @@ function deleteStore() {
                 if(answer.storeId === 'back') {
                     deletStoresBrandEmployees();
                 } else {
-                    const query = "DELETE FROM store WHERE id = ?";
+                    const query = "DELETE FROM stores WHERE id = ?";
                     connection.query(
                         query, 
                         [answer.storeId],
