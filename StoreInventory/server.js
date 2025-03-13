@@ -464,11 +464,11 @@ function deleteEmployee() {
 }
 
 function deleteBrand() {
-    const query = 'SELECT * FROM roles';
+    const query = 'SELECT * FROM  products';
     connection.query(query, (err, res) => {
         if (err) throw err;
-        const choices = res.map((brand) = ({
-            name: `${brand.title} (${brand.id}) - ${brand.price}`,
+        const choices = res.map((brand) => ({
+            name: `${brand.title} (${brand.id}) - ${brand.salary}`,
             value: brand.id,
         }))
         choices.push({ name: 'Go Back', value: null });
@@ -476,8 +476,8 @@ function deleteBrand() {
             type: 'list',
             name: 'brandId',
             messsage: 'which brand would you like to delete?',
-            choice:
-                choices,
+            choices:[
+                ...choices, ]
 
         })
             .then((answer) => {
@@ -485,8 +485,8 @@ function deleteBrand() {
                     deletStoresBrandEmployees()
                     return
                 }
-                const query = 'DELETE FROM employee WHERE is = ?';
-                connection.query(query, [answer.id], (err, res) => {
+                const query = 'DELETE FROM products WHERE id = ?';
+                connection.query(query, [answer.brandId], (err, res) => {
                     if (err) throw err;
                     console.log(
                         `Delete employee with ID ${answer.id} from the database!`
