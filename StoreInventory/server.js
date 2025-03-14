@@ -190,7 +190,7 @@ function addBrand() {
 }
 
 function addEmployee() {
-    connection.query("SELECT id, title FROM employees", (error, results) => {
+    connection.query("SELECT id, title FROM roles", (error, results) => {
         if (error) {
             console.error(error);
             return;
@@ -267,139 +267,7 @@ function addEmployee() {
         )
     })
 }
-function addManager() {
-    const queryDepartments = "Select from departmants";
-    const queryEmployees = 'Select form employee';
 
-    connection.query(queryDepartments, (err, resDepartments) => {
-        if (err) throw err;
-        connection.query(queryEmployees, (err, resEmployees) => {
-            if (err) throw err;
-            inquirer
-                .prompt([
-                    {
-                        type: 'list',
-                        name: 'department',
-                        message: 'Select the department:',
-                        choices: resDepartments.map(
-                            (department) => department.department_name
-                        ),
-
-                    },
-                    {
-                        type: 'list',
-                        name: 'employee',
-                        message: 'Select the employee to add to manager to:',
-                        choices: resEmployees.map(
-                            (employee) =>
-                                `${employee.first_name} ${employee.last_name}`
-                        ),
-                    },
-                    {
-                        type: 'list',
-                        name: 'manager',
-                        message: 'Select employee manager:',
-                        choices: resEmployees.map(
-                            (employee) =>
-                                `${employee.first_name} ${employee.last_name}`
-                        ),
-                    },
-
-                ])
-                .then((answer) => {
-                    const department = resDepartments.find(
-                        (department) =>
-                            department.department_name === answer.department
-                    );
-                    const employee = resEmployees.find(
-                        (employee) =>
-                            `${employee.first_name} ${employee.last_name}` ===
-                            answer.employee
-                    );
-                    const manager = resEmployees.find(
-                        (employee) =>
-                            `${employee.first_name} ${employee.last_name}` ===
-                            answer.manager
-                    );
-                    const query =
-                        'Update employee set manager_id = ? Where id = ? AND role_id In (Select id From roles Where department_id = ?'
-                    connection.query(
-                        query,
-                        [manager.id, employee.id, department.id],
-                        (err, res) => {
-                            if (err) throw err;
-                            console.log(
-                                `Added manager ${manager.first_name} ${manager.last_name} to employee ${employee.first_name} ${employee.last_name} in department ${department.department_name}`
-                            );
-                            start();
-                        }
-                    )
-                })
-        })
-    })
-
-}
-
-function viewEmployeesByStore() {
-    const query = 'Slect store.store_name, employee.first_name, employee.last_name FORM employee INNER JOIN roles ON employee.role_od = roles.id INNER JOIN store ON roles.store_id = stores.id ORDER BY stores.store_name ASC'
-    connection.query(query, (err, res) => {
-        if (err) throw err;
-        console.log(res);
-        start()
-    })
-}
-
-function updateEmployeeRole() {
-    const queryEmployees =
-        "Select employee.id employee.first_name, employee.last_name, roles.title From employee Left Join roles on employee.role_id = roles.id";
-    const queryRoles = 'Select from roles';
-    connection.query(queryEmployees, (err, resEmployees) => {
-        if (err) throw err;
-        connection.query(queryRoles, (err, resRoles) => {
-            if (err) throw err;
-            inquirer
-                .prompt([
-                    {
-                        type: 'list',
-                        name: 'employee',
-                        message: 'Select eh employee to update:',
-                        choices: resEmployees.map(
-                            (employee) =>
-                                `${employee.first_name} ${employee.last_name}`
-                        ),
-                    },
-                    {
-                        type: 'list',
-                        name: 'role',
-                        message: 'Select the new role:',
-                        choices: resRoles.map((role) => role.title),
-                    }
-                ])
-                .then((answer) => {
-                    const employee = resEmployees.find(
-                        (employee) => `${employee.first_name} ${employee.last_name}` ===
-                            answer.employee
-                    );
-                    const role = resRoles.find(
-                        (role) => role.tile === answer.role
-                    );
-                    const query =
-                        'update employee Set role_id = ? WHere id = ?';
-                    connection.query(
-                        query,
-                        [role.id, employee.id],
-                        (err, res) => {
-                            if (err) throw err;
-                            console.log(
-                                `Updated ${employee.first_name} ${employee.last_name}'s role to ${role.tile} in the database!`
-                            )
-                            start();
-                        }
-                    )
-                })
-        })
-    })
-}
 
 function deletStoresBrandEmployees() {
     inquirer
