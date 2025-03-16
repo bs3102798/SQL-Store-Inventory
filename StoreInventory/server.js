@@ -46,7 +46,6 @@ function start() {
                 'Add a employee',
                 'View the total funding of a store',
                 'Delete Stores | Brand | Employees',
-
                 'Exit',
 
             ],
@@ -69,17 +68,11 @@ function start() {
                 case 'Add an employee':
                     addEmployee()
                     break;
-                case 'Add a Manager':
-                    addManager();
-                    break
                 case 'Add a brand':
                     addBrand()
                     break;
                 case "View the total funding of a store":
                     ViewTotalFundingOfStore();
-                    break;
-                case 'View Employees by Store':
-                    viewEmployeesByStore()
                     break;
                 case 'Delete Stores | Brand | Employees':
                     deletStoresBrandEmployees()
