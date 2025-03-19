@@ -37,7 +37,12 @@ CREATE TABLE employees(
     last_name VARCHAR(30) NOT NULL,
     role_id INT,
     manager_id INT NULL,
-    FOREIGN KEY (role_id) REFERENCES roles(id)
+    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE SET NULL
 
 );
+
+SET FOREIGN_KEY_CHECKS = 0;
+-- TRUNCATE TABLE roles;
+-- TRUNCATE TABLE departments;
+-- SET FOREIGN_KEY_CHECKS = 1
 -- create anual profits and losses for stores

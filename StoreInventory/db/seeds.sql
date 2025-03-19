@@ -59,13 +59,24 @@ INSERT INTO products(title, price, store_id) VALUES
 
 INSERT INTO employees(first_name, last_name, role_id, manager_id)
 VALUES
-('tom', 'brady', 1, 1),
-('michael', 'jordan', 2, 2),
-('serena', 'williams', 3, 3),
-('lebron', 'james', 4, 4),
-('tiger', 'woods', 5, 5),
-('elon', 'musk', 6, 6),
-('bill', 'gates', 7, 7),
-('jeff', 'bezos', 8, 8),
-('steve', 'jobs', 9, 9),
-('mark', 'zuckerberg', 10, 10);
+('tom', 'brady', 1, NULL),
+('michael', 'jordan', 2, 1),
+('serena', 'williams', 3, 2),
+('lebron', 'james', 1, 3),
+('tiger', 'woods', 2, 4),
+('elon', 'musk', 3, 5),
+('bill', 'gates', 1, 6),
+('jeff', 'bezos', 2, 7),
+('steve', 'jobs', 3, 8),
+('mark', 'zuckerberg', 1, 9);
+
+
+INSERT INTO departments (department_name) VALUES
+('Management'),
+('Sales'),
+('Finance');
+
+INSERT INTO roles (title, salary, department_id) VALUES
+('Auditor', 80000, 1 ),
+('Quality control', 70000, 2),
+('Stocker', 60000, 3);
