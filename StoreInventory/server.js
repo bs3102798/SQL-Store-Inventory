@@ -43,7 +43,7 @@ function start() {
                 'View all Employees',
                 'Add a Store',
                 'Add a brand',
-                'Add a employee',
+                'add an employee',
                 'View the total funding of a store',
                 'Delete Stores | Brand | Employees',
                 'Exit',
@@ -65,11 +65,11 @@ function start() {
                 case 'Add a Store':
                     addStore()
                     break;
-                case 'Add an employee':
-                    addEmployee()
-                    break;
                 case 'Add a brand':
                     addBrand()
+                    break;
+                case 'add an employee':
+                    addEmployee()
                     break;
                 case "View the total funding of a store":
                     ViewTotalFundingOfStore();
@@ -183,7 +183,8 @@ function addBrand() {
 }
 
 function addEmployee() {
-    connection.query("SELECT id, title FROM roles", (error, results) => {
+    console.log("Starting addEmployee function...");
+    connection.query("SELECT id, title FROM roles roles", (error, results) => {
         if (error) {
             console.error(error);
             return;
@@ -201,11 +202,11 @@ function addEmployee() {
                     console.error(error);
                     return
                 }
-                const managers = results.map(({ id, name }) => ({
-                    name,
-                    value: id,
-                }));
-                console.log("Managers loaded:", managers);
+                // const managers = results.map(({ id, name }) => ({
+                //     name,
+                //     value: id,
+                // }));
+                // console.log("Managers loaded:", managers);
 
                 inquirer
                     .prompt([
@@ -225,15 +226,15 @@ function addEmployee() {
                             message: 'Select the employee role',
                             choices: roles,
                         },
-                        {
-                            type: 'list',
-                            name: 'managerId',
-                            message: 'Select the employee manager:',
-                            choices: [
-                                { name: 'none', value: null },
-                                ...managers,
-                            ],
-                        },
+                        // {
+                        //     type: 'list',
+                        //     name: 'managerId',
+                        //     message: 'Select the employee manager:',
+                        //     choices: [
+                        //         { name: 'none', value: null },
+                        //         ...managers,
+                        //     ],
+                        // },
                     ])
                     .then((answer) => {
                         const SQL =
