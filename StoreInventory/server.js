@@ -269,7 +269,7 @@ function deletStoresBrandEmployees() {
             type: 'list',
             name: 'data',
             message: 'what would you like to delete?',
-            choices: ["employee", "Store", "Brand"],
+            choices: ["Employee", "Store", "Brand"],
         })
         .then((answer) => {
             switch (answer.data) {
@@ -291,7 +291,7 @@ function deletStoresBrandEmployees() {
 }
 
 function deleteEmployee() {
-    const query = "SELECT * FROM employee";
+    const query = "SELECT * FROM employees";
     connection.query(query, (err, res) => {
         if (err) throw err;
         const employeeList = res.map((employee) => ({
@@ -311,7 +311,7 @@ function deleteEmployee() {
                 deletStoresBrandEmployees();
                 return;
             }
-            const query = "DELETE FROM employee WHERE id = ?";
+            const query = "DELETE FROM employees WHERE id = ?";
             connection.query(query, [answer.id], (err, res) => {
                 if (err) throw err;
                 console.log(
