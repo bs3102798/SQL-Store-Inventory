@@ -42,7 +42,8 @@ CREATE TABLE employees(
 );
 
 SET FOREIGN_KEY_CHECKS = 0;
--- TRUNCATE TABLE roles;
--- TRUNCATE TABLE departments;
--- SET FOREIGN_KEY_CHECKS = 1
--- create anual profits and losses for stores
+
+CREATE TABLE profits(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    store_profits VARCHAR(255) NOT NULL
+)
