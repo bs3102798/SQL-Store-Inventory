@@ -10,7 +10,7 @@ INSERT INTO stores(store_name) VALUES
 ('IKEA'),
 ('Sams Club');
 
-INSERT INTO profits(store_profits) VALUES
+INSERT INTO profits(stores, store_profits, store_income, store_expense) VALUES
 ('Walmart',),
 ('Target',),
 ('Amazon',),
