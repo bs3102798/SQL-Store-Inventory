@@ -11,16 +11,16 @@ INSERT INTO stores(store_name) VALUES
 ('Sams Club');
 
 INSERT INTO profits(stores, store_profits, store_income, store_expense) VALUES
-('Walmart',),
-('Target',),
-('Amazon',),
-('Best Buy',),
-('Costco',),
-('Apple Store',),
-('Home Depot',),
-('Nike',),
-('IKEA',),
-('Sams Club',);
+('Walmart', 200,000.00, 400,000.00, 200,000.00),
+('Target', 200,000.00, 400,000.00, 200,000.00),
+('Amazon', 200,000.00, 400,000.00, 200,000.00),
+('Best Buy', 200,000.00, 400,000.00, 200,000.00),
+('Costco', 200,000.00, 400,000.00, 200,000.00),
+('Apple Store', 200,000.00, 400,000.00, 200,000.00),
+('Home Depot', 200,000.00, 400,000.00, 200,000.00),
+('Nike', 200,000.00, 400,000.00, 200,000.00),
+('IKEA', 200,000.00, 400,000.00, 200,000.00),
+('Sams Club', 200,000.00, 400,000.00, 200,000.00);
 
 
 
