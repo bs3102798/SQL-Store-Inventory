@@ -46,8 +46,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 CREATE TABLE profits(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     stores VARCHAR(255) NOT NULL,
-    store_profits DECIMAL(10,2), NOT NULL,
-    store_income DECIMAL(10,2), NOT NULL,
-    store_expenses DECIMAL(10,2), NOT NULL,
+    store_profits DECIMAL(17,8),
+    store_income DECIMAL(60,6),
+    store_expenses DECIMAL(15,7),
     profits_id INT NULL
 );
