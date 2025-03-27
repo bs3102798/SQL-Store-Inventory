@@ -44,6 +44,7 @@ function start() {
                 'Add a Store',
                 'Add a brand',
                 'add an employee',
+                //change to store profits
                 'View the total funding of a store',
                 'Delete Stores | Brand | Employees',
                 'Exit',
@@ -71,8 +72,9 @@ function start() {
                 case 'add an employee':
                     addEmployee()
                     break;
-                case "View the total funding of a store":
-                    ViewTotalFundingOfStore();
+                //change to store profits 
+                case "View the profits Incomes and Expenses for stores":
+                    ViewProfitsIncomesExpenses();
                     break;
                 case 'Delete Stores | Brand | Employees':
                     deletStoresBrandEmployees()
@@ -109,6 +111,16 @@ function viewAllEmployees() {
         console.table(res);
         start()
     })
+}
+
+function ViewProfitsIncomesExpenses() {
+    const query = "Select * FROM  profits";
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        start();
+    })
+
 }
 
 
@@ -305,21 +317,21 @@ function deleteEmployee() {
                 name: 'id',
                 message: "select the employee you want to delete:",
                 choices: employeeList,
-        })
-        .then((answer) => {
-            if (answer.id === "back") {
-                deletStoresBrandEmployees();
-                return;
-            }
-            const query = "DELETE FROM employees WHERE id = ?";
-            connection.query(query, [answer.id], (err, res) => {
-                if (err) throw err;
-                console.log(
-                    `DeleteE employee with ID ${answer.id} form the database!`
-                )
-                start()
             })
-        })
+            .then((answer) => {
+                if (answer.id === "back") {
+                    deletStoresBrandEmployees();
+                    return;
+                }
+                const query = "DELETE FROM employees WHERE id = ?";
+                connection.query(query, [answer.id], (err, res) => {
+                    if (err) throw err;
+                    console.log(
+                        `DeleteE employee with ID ${answer.id} form the database!`
+                    )
+                    start()
+                })
+            })
     })
 
 
@@ -338,8 +350,8 @@ function deleteBrand() {
             type: 'list',
             name: 'brandId',
             messsage: 'which brand would you like to delete?',
-            choices:[
-                ...choices, ]
+            choices: [
+                ...choices,]
 
         })
             .then((answer) => {
@@ -376,17 +388,17 @@ function deleteStore() {
                 name: 'storeId',
                 message: 'Which store would you like to delete?',
                 choices: [
-                    ...storeChoices, 
-                    {name: 'Go back', value: "back"}
+                    ...storeChoices,
+                    { name: 'Go back', value: "back" }
                 ]
             })
             .then((answer) => {
-                if(answer.storeId === 'back') {
+                if (answer.storeId === 'back') {
                     deletStoresBrandEmployees();
                 } else {
                     const query = "DELETE FROM stores WHERE id = ?";
                     connection.query(
-                        query, 
+                        query,
                         [answer.storeId],
                         (err, res) => {
                             if (err) throw err;
@@ -406,7 +418,13 @@ function deleteStore() {
 
 }
 
-function ViewTotalFundingOfStore() {
+function ViewProfitsIncomesExpenses() {
+    const query = "Select * FROM  profits";
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        start();
+    })
 
 }
 
