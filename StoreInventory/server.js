@@ -45,7 +45,7 @@ function start() {
                 'Add a brand',
                 'add an employee',
                 //change to store profits
-                'View the total funding of a store',
+                'View the profits Incomes and Expenses for stores',
                 'Delete Stores | Brand | Employees',
                 'Exit',
 
