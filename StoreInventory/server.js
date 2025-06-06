@@ -38,6 +38,7 @@ function start() {
             name: 'action',
             message: 'what would you like to do?',
             choices: [
+                'Order',
                 'View all Stores',
                 'View all brands',
                 'View all Employees',
@@ -54,6 +55,8 @@ function start() {
         })
         .then((answer) => {
             switch (answer.action) {
+                case 'Order':
+                    orderFromStore();
                 case 'View all Stores':
                     viewAllStores();
                     break;
@@ -85,6 +88,12 @@ function start() {
             }
         })
 }
+
+function orderFromStore() {
+    const query = "Select * FROM stores";
+
+}
+
 
 function viewAllStores() {
     const query = "Select * FROM stores";
